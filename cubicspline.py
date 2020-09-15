@@ -115,4 +115,8 @@ plt.plot(x, beta)
 v = np.sqrt((2*g*(y0 - y)/(1+c_kule)))
 velocity = plt.figure('v(x)',figsize=(12,3))
 plt.plot(x,v)
+
+a_perp = v*v*kappa
+
+
 plt.show()
