@@ -83,8 +83,11 @@ y = cs(x)
 dy = cs(x,1)
 d2y = cs(x,2)
 
-#Plotting
+curl = d2y/pow((1+pow(dy,2)),3/2)
 
+print(curl)
+#Plotting
+'''
 baneform = plt.figure('y(x)',figsize=(12,3))
 plt.plot(x,y,xfast,yfast,'*')
 plt.title('Banens form')
@@ -103,3 +106,4 @@ print('Banens høyeste punkt (m)',np.max(y))
 
 print('NB: SKRIV NED festepunkthøydene når du/dere er fornøyd med banen.')
 print('Eller kjør programmet på nytt inntil en attraktiv baneform vises.')
+'''
