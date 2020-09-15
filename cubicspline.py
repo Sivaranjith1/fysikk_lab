@@ -110,9 +110,11 @@ print('Eller kjør programmet på nytt inntil en attraktiv baneform vises.')
 beta = np.arctan(dy)
 beta = 180*beta/np.pi
 vinkelform = plt.figure('B(x)',figsize=(12,3))
+plt.grid()
 plt.plot(x, beta)
 
 v = np.sqrt((2*g*(y0 - y)/(1+c_kule)))
 velocity = plt.figure('v(x)',figsize=(12,3))
+plt.grid()
 plt.plot(x,v)
 plt.show()
