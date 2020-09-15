@@ -84,14 +84,15 @@ dy = cs(x,1)
 d2y = cs(x,2)
 g = 9.81
 y0 = 0.255
-c_kule = 2/5
+c_ball = 2/5
 mass = 1
 beta_rad = np.arctan(dy)
 beta_deg = 180*beta_rad/np.pi
-v = np.sqrt((2*g*(y0 - y)/(1+c_kule)))
+v = np.sqrt((2*g*(y0 - y)/(1+c_ball)))
 curl = d2y/pow((1+pow(dy,2)),3/2)
 a_perp = v*v*curl
-acc = -g*np.sin(beta_rad)/(1+c_kule)
+acc = -g*np.sin(beta_rad)/(1+c_ball)
+f = (c_ball*mass*g*np.sin(beta_rad))/(1+c_ball)
 
 N = mass*(g*np.cos(beta_rad) + a_perp)
 #Plotting
@@ -156,4 +157,13 @@ plt.title('Normal Force')
 plt.xlabel('x ($m$)')
 plt.ylabel('Normal force ($kg\u00B7m/s\u00B2$)')
 plt.plot(x,N)
+plt.show()
+
+relation_f_N = np.abs(f/N)
+relation = plt.figure('|f/N|',figsize=(12,3))
+plt.title('Relation between F and N')
+plt.xlabel('x ($m$)')
+plt.ylabel('|f/N|')
+plt.grid()
+plt.plot(x,relation_f_N)
 plt.show()
