@@ -95,7 +95,7 @@ plt.xlabel('$x$ (m)',fontsize=20)
 plt.ylabel('$y(x)$ (m)',fontsize=20)
 plt.ylim(0,0.350)
 plt.grid()
-plt.show()
+# plt.show()
 #baneform.savefig("baneform.pdf", bbox_inches='tight')
 #baneform.savefig("baneform.png", bbox_inches='tight')
 
