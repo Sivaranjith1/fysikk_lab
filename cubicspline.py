@@ -118,14 +118,14 @@ print('Banens høyeste punkt (m)',np.max(y))
 print('NB: SKRIV NED festepunkthøydene når du/dere er fornøyd med banen.')
 print('Eller kjør programmet på nytt inntil en attraktiv baneform vises.')
 
-beta = np.arctan(dy)
-beta = 180*beta/np.pi
+beta_rad = np.arctan(dy)
+beta_deg = 180*beta_rad/np.pi
 graf_beta = plt.figure('B(x)',figsize=(12,3))
 plt.grid()
 plt.title('Beta')
 plt.xlabel('x (m)')
 plt.ylabel('\u03b2 (deg)')
-plt.plot(x, beta)
+plt.plot(x, beta_deg)
 
 v = np.sqrt((2*g*(y0 - y)/(1+c_kule)))
 graf_v = plt.figure('v(x)',figsize=(12,3))
@@ -139,5 +139,13 @@ plt.title('Centripedal acceleration')
 plt.xlabel('x (m)')
 plt.ylabel('A_perp (ms^-2)')
 plt.plot(x,a_perp)
+
+acc = -g*np.sin(beta_rad)/(1+c_kule)
+graf_acc = plt.figure('acc(x)',figsize=(12,3))
+plt.grid()
+plt.title('Acceleration')
+plt.xlabel('x (m)')
+plt.ylabel('Acceleration (ms^-2)')
+plt.plot(x,acc)
 
 plt.show()
