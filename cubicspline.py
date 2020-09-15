@@ -170,8 +170,40 @@ plt.grid()
 plt.title('Average velocity in x-direction')
 plt.plot(x,v_x_avg)
 
+t = np.zeros(len(dt))
+for i in range(1,len(dt)):
+    t[i] = t[i-1]+dt[i]
 
-print(dt)
+graf_x_t = plt.figure('x(t)',figsize=(12,3))
+plt.grid()
+plt.title('X-position with time')
+plt.xlabel('Time (s)')
+plt.ylabel('X position (m)')
+plt.plot(t,x)
+
+graf_y_t = plt.figure('y(t)',figsize=(12,3))
+plt.grid()
+plt.title('Y-position with time')
+plt.xlabel('Time (s)')
+plt.ylabel('Y position (m)')
+plt.plot(t,y)
+
+graf_v_t = plt.figure('v(t)',figsize=(12,3))
+plt.grid()
+plt.title('Velocity with time')
+plt.xlabel('Time (s)')
+plt.ylabel('Velocity (ms^-1)')
+plt.plot(t,v)
+
+graf_acc_t = plt.figure('a(t)',figsize=(12,3))
+plt.grid()
+plt.title('Acceleration with time')
+plt.xlabel('Time (s)')
+plt.ylabel('Acceleration (ms^-2)')
+plt.plot(t,acc)
+
+plt.show()
+
 
 
 
