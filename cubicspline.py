@@ -82,6 +82,10 @@ Nx = len(x)
 y = cs(x)
 dy = cs(x,1)
 d2y = cs(x,2)
+g = 9.81
+y0 = 0.255
+c_kule = 2/5
+
 
 #Plotting
 
@@ -92,7 +96,6 @@ plt.xlabel('$x$ (m)',fontsize=20)
 plt.ylabel('$y(x)$ (m)',fontsize=20)
 plt.ylim(0,0.350)
 plt.grid()
-plt.show()
 #baneform.savefig("baneform.pdf", bbox_inches='tight')
 #baneform.savefig("baneform.png", bbox_inches='tight')
 
@@ -103,3 +106,13 @@ print('Banens høyeste punkt (m)',np.max(y))
 
 print('NB: SKRIV NED festepunkthøydene når du/dere er fornøyd med banen.')
 print('Eller kjør programmet på nytt inntil en attraktiv baneform vises.')
+
+beta = np.arctan(dy)
+beta = 180*beta/np.pi
+vinkelform = plt.figure('B(x)',figsize=(12,3))
+plt.plot(x, beta)
+
+v = np.sqrt((2*g*(y0 - y)/(1+c_kule)))
+velocity = plt.figure('v(x)',figsize=(12,3))
+plt.plot(x,v)
+plt.show()
