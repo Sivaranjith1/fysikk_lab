@@ -87,7 +87,7 @@ curl = d2y/pow((1+pow(dy,2)),3/2)
 
 print(curl)
 #Plotting
-'''
+
 baneform = plt.figure('y(x)',figsize=(12,3))
 plt.plot(x,y,xfast,yfast,'*')
 plt.title('Banens form')
@@ -99,6 +99,14 @@ plt.show()
 #baneform.savefig("baneform.pdf", bbox_inches='tight')
 #baneform.savefig("baneform.png", bbox_inches='tight')
 
+baneform = plt.figure('$\kappa$(x)',figsize=(12,3))
+plt.plot(x,curl)
+plt.title('Krumning')
+plt.xlabel('$x$ (m)',fontsize=20)
+plt.ylabel('$\kappa$(x) (1/m)',fontsize=20)
+# plt.ylim(0,0.350)
+plt.grid()
+plt.show()
 
 # print('Antall forsøk',attempts)
 print('Festepunkthøyder (m)',yfast)
@@ -106,4 +114,3 @@ print('Banens høyeste punkt (m)',np.max(y))
 
 print('NB: SKRIV NED festepunkthøydene når du/dere er fornøyd med banen.')
 print('Eller kjør programmet på nytt inntil en attraktiv baneform vises.')
-'''
