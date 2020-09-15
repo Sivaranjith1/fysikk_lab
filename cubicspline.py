@@ -150,4 +150,29 @@ plt.plot(x,acc)
 normal_force = plt.figure('N(x)', figsize=(12,3))
 plt.grid()
 plt.plot(x,N)
-plt.show()
+
+v_x = v*np.cos(beta_rad)
+v_x_avg = np.zeros(len(v_x))
+v_x_avg[0] = v_x[0]
+dt = np.zeros(len(v_x))
+
+graf_v_x = plt.figure('v_x',figsize=(12,3))
+plt.grid()
+plt.title('Velocity in x-direction')
+plt.plot(x,v_x)
+
+for i in range(1,len(v_x)):
+    v_x_avg[i] = 0.5*(v_x[i-1] + v_x[i])
+    dt[i] = dx/v_x_avg[i]
+    
+graf_v_x_avg = plt.figure('v_x_avg',figsize=(12,3))
+plt.grid()
+plt.title('Average velocity in x-direction')
+plt.plot(x,v_x_avg)
+
+
+print(dt)
+
+
+
+
