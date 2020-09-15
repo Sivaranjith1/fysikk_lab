@@ -85,11 +85,15 @@ d2y = cs(x,2)
 g = 9.81
 y0 = 0.255
 c_kule = 2/5
-
-
+mass = 1
+beta_rad = np.arctan(dy)
+beta_deg = 180*beta_rad/np.pi
+v = np.sqrt((2*g*(y0 - y)/(1+c_kule)))
 curl = d2y/pow((1+pow(dy,2)),3/2)
+a_perp = v*v*curl
+acc = -g*np.sin(beta_rad)/(1+c_kule)
 
-print(curl)
+N = mass*(g*np.cos(beta_rad) + a_perp)
 #Plotting
 
 baneform = plt.figure('y(x)',figsize=(12,3))
@@ -118,8 +122,6 @@ print('Banens høyeste punkt (m)',np.max(y))
 print('NB: SKRIV NED festepunkthøydene når du/dere er fornøyd med banen.')
 print('Eller kjør programmet på nytt inntil en attraktiv baneform vises.')
 
-beta_rad = np.arctan(dy)
-beta_deg = 180*beta_rad/np.pi
 graf_beta = plt.figure('B(x)',figsize=(12,3))
 plt.grid()
 plt.title('Beta')
@@ -127,20 +129,17 @@ plt.xlabel('x (m)')
 plt.ylabel('\u03b2 (deg)')
 plt.plot(x, beta_deg)
 
-v = np.sqrt((2*g*(y0 - y)/(1+c_kule)))
 graf_v = plt.figure('v(x)',figsize=(12,3))
 plt.grid()
 plt.plot(x,v)
 
-a_perp = v*v*curl
 graf_a_perp = plt.figure('a_perp(x)',figsize=(12,3))
 plt.grid()
-plt.title('Centripedal acceleration')
+plt.title('Centripetal acceleration')
 plt.xlabel('x (m)')
 plt.ylabel('A_perp (ms^-2)')
 plt.plot(x,a_perp)
 
-acc = -g*np.sin(beta_rad)/(1+c_kule)
 graf_acc = plt.figure('acc(x)',figsize=(12,3))
 plt.grid()
 plt.title('Acceleration')
@@ -148,4 +147,7 @@ plt.xlabel('x (m)')
 plt.ylabel('Acceleration (ms^-2)')
 plt.plot(x,acc)
 
+normal_force = plt.figure('N(x)', figsize=(12,3))
+plt.grid()
+plt.plot(x,N)
 plt.show()
