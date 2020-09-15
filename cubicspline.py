@@ -109,7 +109,7 @@ plt.xlabel('$x$ (m)',fontsize=20)
 plt.ylabel('$\kappa$(x) (1/m)',fontsize=20)
 # plt.ylim(0,0.350)
 plt.grid()
-plt.show()
+# plt.show()
 
 # print('Antall forsøk',attempts)
 print('Festepunkthøyder (m)',yfast)
