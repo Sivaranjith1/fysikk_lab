@@ -120,12 +120,24 @@ print('Eller kjør programmet på nytt inntil en attraktiv baneform vises.')
 
 beta = np.arctan(dy)
 beta = 180*beta/np.pi
-vinkelform = plt.figure('B(x)',figsize=(12,3))
+graf_beta = plt.figure('B(x)',figsize=(12,3))
 plt.grid()
+plt.title('Beta')
+plt.xlabel('x (m)')
+plt.ylabel('\u03b2 (deg)')
 plt.plot(x, beta)
 
 v = np.sqrt((2*g*(y0 - y)/(1+c_kule)))
-velocity = plt.figure('v(x)',figsize=(12,3))
+graf_v = plt.figure('v(x)',figsize=(12,3))
 plt.grid()
 plt.plot(x,v)
+
+a_perp = v*v*curl
+graf_a_perp = plt.figure('a_perp(x)',figsize=(12,3))
+plt.grid()
+plt.title('Centripedal acceleration')
+plt.xlabel('x (m)')
+plt.ylabel('A_perp (ms^-2)')
+plt.plot(x,a_perp)
+
 plt.show()
