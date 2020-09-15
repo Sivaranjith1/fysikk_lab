@@ -37,37 +37,37 @@ h = 200
 xfast=np.asarray([0,h,2*h,3*h,4*h,5*h,6*h,7*h])
 # Vi begrenser starthøyden (og samtidig den maksimale høyden) til
 # å ligge mellom 250 og 300 mm
-ymax = 300
-# yfast: tabell med 8 heltall mellom 50 og 300 (mm); representerer
-# høyden i de 8 festepunktene
-yfast=np.asarray(np.random.randint(50, ymax, size=8))
-# inttan: tabell med 7 verdier for (yfast[n+1]-yfast[n])/h (n=0..7); dvs
-# banens stigningstall beregnet med utgangspunkt i de 8 festepunktene.
-inttan = np.diff(yfast)/h
-attempts=1
+# ymax = 300
+# # yfast: tabell med 8 heltall mellom 50 og 300 (mm); representerer
+# # høyden i de 8 festepunktene
+# yfast=np.asarray(np.random.randint(50, ymax, size=8))
+# # inttan: tabell med 7 verdier for (yfast[n+1]-yfast[n])/h (n=0..7); dvs
+# # banens stigningstall beregnet med utgangspunkt i de 8 festepunktene.
+# inttan = np.diff(yfast)/h
+# attempts=1
 # while-løkken sjekker om en eller flere av de 3 betingelsene ovenfor
 # ikke er tilfredsstilt; i så fall velges nye festepunkter inntil
 # de 3 betingelsene er oppfylt
-while (yfast[0] < yfast[1]*1.04 or
-       yfast[0] < yfast[2]*1.08 or
-       yfast[0] < yfast[3]*1.12 or
-       yfast[0] < yfast[4]*1.16 or
-       yfast[0] < yfast[5]*1.20 or
-       yfast[0] < yfast[6]*1.24 or
-       yfast[0] < yfast[7]*1.28 or
-       yfast[0] < 250 or
-       np.max(np.abs(inttan)) > 0.4 or
-       inttan[0] > -0.2):
-          yfast=np.asarray(np.random.randint(0, ymax, size=8))
-          inttan = np.diff(yfast)/h
-          attempts=attempts+1
+# while (yfast[0] < yfast[1]*1.04 or
+#        yfast[0] < yfast[2]*1.08 or
+#        yfast[0] < yfast[3]*1.12 or
+#        yfast[0] < yfast[4]*1.16 or
+#        yfast[0] < yfast[5]*1.20 or
+#        yfast[0] < yfast[6]*1.24 or
+#        yfast[0] < yfast[7]*1.28 or
+#        yfast[0] < 250 or
+#        np.max(np.abs(inttan)) > 0.4 or
+#        inttan[0] > -0.2):
+#           yfast=np.asarray(np.random.randint(0, ymax, size=8))
+#           inttan = np.diff(yfast)/h
+#           attempts=attempts+1
 
 # Når programmet her har avsluttet while-løkka, betyr det at
 # tallverdiene i tabellen yfast vil resultere i en tilfredsstillende bane. 
 
 # Omregning fra mm til m:
 xfast = xfast/1000
-yfast = yfast/1000
+yfast = np.asarray([0.255,0.183,0.189,0.188,0.129,0.091,0.151,0.171])
 
 #Programmet beregner deretter de 7 tredjegradspolynomene, et
 #for hvert intervall mellom to nabofestepunkter.
@@ -97,7 +97,7 @@ plt.show()
 #baneform.savefig("baneform.png", bbox_inches='tight')
 
 
-print('Antall forsøk',attempts)
+# print('Antall forsøk',attempts)
 print('Festepunkthøyder (m)',yfast)
 print('Banens høyeste punkt (m)',np.max(y))
 
