@@ -83,6 +83,9 @@ y = cs(x)
 dy = cs(x,1)
 d2y = cs(x,2)
 
+curl = d2y/pow((1+pow(dy,2)),3/2)
+
+print(curl)
 #Plotting
 
 baneform = plt.figure('y(x)',figsize=(12,3))
@@ -92,10 +95,18 @@ plt.xlabel('$x$ (m)',fontsize=20)
 plt.ylabel('$y(x)$ (m)',fontsize=20)
 plt.ylim(0,0.350)
 plt.grid()
-plt.show()
+# plt.show()
 #baneform.savefig("baneform.pdf", bbox_inches='tight')
 #baneform.savefig("baneform.png", bbox_inches='tight')
 
+baneform = plt.figure('$\kappa$(x)',figsize=(12,3))
+plt.plot(x,curl)
+plt.title('Krumning')
+plt.xlabel('$x$ (m)',fontsize=20)
+plt.ylabel('$\kappa$(x) (1/m)',fontsize=20)
+# plt.ylim(0,0.350)
+plt.grid()
+plt.show()
 
 # print('Antall forsøk',attempts)
 print('Festepunkthøyder (m)',yfast)
