@@ -158,6 +158,57 @@ plt.xlabel('x ($m$)')
 plt.ylabel('Normal force ($kg\u00B7m/s\u00B2$)')
 plt.plot(x,N)
 
+v_x = v*np.cos(beta_rad)
+v_x_avg = np.zeros(len(v_x))
+v_x_avg[0] = v_x[0]
+dt = np.zeros(len(v_x))
+
+graf_v_x = plt.figure('v_x',figsize=(12,3))
+plt.grid()
+plt.title('Velocity in x-direction')
+plt.plot(x,v_x)
+
+for i in range(1,len(v_x)):
+    v_x_avg[i] = 0.5*(v_x[i-1] + v_x[i])
+    dt[i] = dx/v_x_avg[i]
+    
+graf_v_x_avg = plt.figure('v_x_avg',figsize=(12,3))
+plt.grid()
+plt.title('Average velocity in x-direction')
+plt.plot(x,v_x_avg)
+
+t = np.zeros(len(dt))
+for i in range(1,len(dt)):
+    t[i] = t[i-1]+dt[i]
+
+graf_x_t = plt.figure('x(t)',figsize=(12,3))
+plt.grid()
+plt.title('X-position with time')
+plt.xlabel('Time (s)')
+plt.ylabel('X position (m)')
+plt.plot(t,x)
+
+graf_y_t = plt.figure('y(t)',figsize=(12,3))
+plt.grid()
+plt.title('Y-position with time')
+plt.xlabel('Time (s)')
+plt.ylabel('Y position (m)')
+plt.plot(t,y)
+
+graf_v_t = plt.figure('v(t)',figsize=(12,3))
+plt.grid()
+plt.title('Velocity with time')
+plt.xlabel('Time (s)')
+plt.ylabel('Velocity (ms^-1)')
+plt.plot(t,v)
+
+graf_acc_t = plt.figure('a(t)',figsize=(12,3))
+plt.grid()
+plt.title('Acceleration with time')
+plt.xlabel('Time (s)')
+plt.ylabel('Acceleration (ms^-2)')
+plt.plot(t,acc)
+
 relation_f_N = np.abs(f/N)
 relation = plt.figure('|f/N|',figsize=(12,3))
 plt.title('Relation between F and N')
@@ -166,3 +217,8 @@ plt.ylabel('|f/N|')
 plt.grid()
 plt.plot(x,relation_f_N)
 plt.show()
+
+
+
+
+
