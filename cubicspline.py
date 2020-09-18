@@ -109,7 +109,7 @@ plt.grid()
 
 baneform = plt.figure('\u03BA',figsize=(12,3))
 plt.plot(x,curl)
-plt.title('Curl')
+plt.title('\u03BA')
 plt.xlabel('x ($m$)',fontsize=20)
 plt.ylabel('\u03BA(x) ($1/m$)',fontsize=20)
 # plt.ylim(0,0.350)
