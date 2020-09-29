@@ -69,6 +69,21 @@ xfast=np.asarray([0,h,2*h,3*h,4*h,5*h,6*h,7*h])
 xfast = xfast/1000
 yfast = np.asarray([0.255,0.183,0.189,0.188,0.129,0.091,0.151,0.171])
 
+dataFromFile = np.loadtxt('Datafiles/1934.txt', skiprows=2)
+
+xfast = []
+yfast = []
+for data in dataFromFile:
+    xfast.append(data[1])
+    yfast.append(data[2])
+
+xfast = np.asarray(xfast)
+yfast = np.asarray(yfast)
+
+print(xfast, yfast)
+
+xfast= xfast/1000
+
 #Programmet beregner deretter de 7 tredjegradspolynomene, et
 #for hvert intervall mellom to nabofestepunkter.
 
@@ -88,13 +103,20 @@ c_ball = 2/5
 mass = 1
 beta_rad = np.arctan(dy)
 beta_deg = 180*beta_rad/np.pi
-v = np.sqrt((2*g*(y0 - y)/(1+c_ball)))
-curl = d2y/pow((1+pow(dy,2)),3/2)
-a_perp = v*v*curl
-acc = -g*np.sin(beta_rad)/(1+c_ball)
-f = (c_ball*mass*g*np.sin(beta_rad))/(1+c_ball)
+# v = np.sqrt((2*g*(y0 - y)/(1+c_ball)))
+# curl = d2y/pow((1+pow(dy,2)),3/2)
+# a_perp = v*v*curl
+# acc = -g*np.sin(beta_rad)/(1+c_ball)
+# f = (c_ball*mass*g*np.sin(beta_rad))/(1+c_ball)
 
-N = mass*(g*np.cos(beta_rad) + a_perp)
+# N = mass*(g*np.cos(beta_rad) + a_perp)
+
+v= 0
+curl = 0
+a_prep = 0
+acc = 0
+f = 0
+N = 0
 #Plotting
 
 baneform = plt.figure('y(x)',figsize=(12,3))
