@@ -27,6 +27,9 @@ def loadFromFile(filename):
 
     return time, xfast, yfast;
 
+'''
+@returns a 2d array, 2d array, 2d array: y is the different files, x is the data
+'''
 def loadEveryFile(path):
     xfast = []
     yfast = []
@@ -47,6 +50,7 @@ def loadEveryFile(path):
     return time, xfast, yfast
 '''
 @param data has to be a 2d array
+@returns a np array with average of each measuring point
 '''
 def getAverage(data):
     data_avarage = []
