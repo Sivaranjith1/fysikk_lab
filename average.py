@@ -53,7 +53,7 @@ def loadEveryFile(path):
 @returns a np array with average of each measuring point
 '''
 def getAverage(data):
-    data_avarage = []
+    data_average = []
 
     index = 0
     indexY = 0
@@ -69,7 +69,7 @@ def getAverage(data):
 
         if(indexY >= len(data)):
             index += 1
-            data_avarage.append(value/length)
+            data_average.append(value/length)
             length = 0
             indexY = 0
             value = 0
@@ -77,9 +77,10 @@ def getAverage(data):
             if(index >= len(data[indexY])):
                 break;
 
-    return data_avarage
+    return data_average
 
-
+def deviation(average):
+    pass
 
 if __name__ == '__main__':
     # print('time', time)
@@ -90,7 +91,9 @@ if __name__ == '__main__':
 
     print(yfast)
 
-    avarage = getAverage(yfast)
+    averageY = getAverage(yfast)
+    averageX = getAverage(xfast)
+    
 
-    plt.plot(avarage)
+    plt.plot(averageX)
     plt.show()
