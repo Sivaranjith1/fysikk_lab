@@ -69,13 +69,27 @@ xfast=np.asarray([0,h,2*h,3*h,4*h,5*h,6*h,7*h])
 xfast = xfast/1000
 yfast = np.asarray([0.255,0.183,0.189,0.188,0.129,0.091,0.151,0.171])
 
+# dataFromFile = np.loadtxt('Datafiles/1930.txt', skiprows=2)
+
+# xfast = []
+# yfast = []
+# xmin = dataFromFile[0][1]
+# for data in dataFromFile:
+#     xfast.append(data[1]- xmin)
+#     yfast.append(data[2])
+
+# xfast = np.array(xfast)
+# yfast = np.array(yfast)
+
+# print('xfast' , xfast, '\n yfast',yfast, '\n', len(xfast), '\n yfast: ', len(yfast))
+
 #Programmet beregner deretter de 7 tredjegradspolynomene, et
 #for hvert intervall mellom to nabofestepunkter.
 
 #Med scipy.interpolate-funksjonen CubicSpline:
 cs = CubicSpline(xfast, yfast, bc_type='natural')
-xmin = 0.000
-xmax = 1.401
+xmin = xfast[0]
+xmax = xfast[-1]
 dx = 0.001
 x = np.arange(xmin, xmax, dx)
 Nx = len(x)
@@ -83,7 +97,7 @@ y = cs(x)
 dy = cs(x,1)
 d2y = cs(x,2)
 g = 9.81
-y0 = 0.255
+y0 = yfast[0]
 c_ball = 2/5
 mass = 1
 beta_rad = np.arctan(dy)
@@ -95,6 +109,13 @@ acc = -g*np.sin(beta_rad)/(1+c_ball)
 f = (c_ball*mass*g*np.sin(beta_rad))/(1+c_ball)
 
 N = mass*(g*np.cos(beta_rad) + a_perp)
+
+# v= 0
+# curl = 0
+# a_prep = 0
+# acc = 0
+# f = 0
+# N = 0
 #Plotting
 
 baneform = plt.figure('y(x)',figsize=(12,3))
@@ -102,10 +123,12 @@ plt.plot(x,y,xfast,yfast,'*')
 plt.title('Form')
 plt.xlabel('x ($m$)',fontsize=20)
 plt.ylabel('y(x) ($m$)',fontsize=20)
-plt.ylim(0,0.350)
+plt.ylim(0,yfast[-1]*1.5)
 plt.grid()
-#baneform.savefig("baneform.pdf", bbox_inches='tight')
-#baneform.savefig("baneform.png", bbox_inches='tight')
+baneform.savefig("baneform.pdf", bbox_inches='tight')
+baneform.savefig("baneform.png", bbox_inches='tight')
+
+print('y', y, len(y))
 
 baneform = plt.figure('\u03BA',figsize=(12,3))
 plt.plot(x,curl)
