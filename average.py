@@ -114,8 +114,8 @@ if __name__ == '__main__':
 
     time, xfast, yfast = loadEveryFile('Datafiles/')
 
-    # averageY = getAverage(yfast)
-    # averageX = getAverage(xfast)
+    averageY = getAverage(yfast)
+    averageX = getAverage(xfast)
 
     velocity = speed(xfast, yfast, time)
     speedArray = velocity[:,2]
@@ -132,5 +132,5 @@ if __name__ == '__main__':
     error = standardError(deviation, len(speedArray) - 1)
     print('Standard error: ', error)
 
-    # plt.plot(averageX)
-    # plt.show()
+    plt.plot(averageX)
+    plt.show()
