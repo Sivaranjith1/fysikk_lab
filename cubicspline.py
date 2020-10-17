@@ -125,8 +125,7 @@ plt.xlabel('x ($m$)',fontsize=20)
 plt.ylabel('y(x) ($m$)',fontsize=20)
 plt.ylim(0,yfast[-1]*1.5)
 plt.grid()
-baneform.savefig("baneform.pdf", bbox_inches='tight')
-baneform.savefig("baneform.png", bbox_inches='tight')
+baneform.savefig("img/baneform.png", bbox_inches='tight')
 
 print('y', y, len(y))
 
@@ -189,6 +188,8 @@ dt = np.zeros(len(v_x))
 graf_v_x = plt.figure('v_x',figsize=(12,3))
 plt.grid()
 plt.title('Hastighet i x-retning')
+plt.ylabel('Hastighet ($\dfrac{m}{s}$)')
+plt.xlabel('tid ($s$)')
 plt.plot(x,v_x)
 
 for i in range(1,len(v_x)):
@@ -198,6 +199,8 @@ for i in range(1,len(v_x)):
 graf_v_x_avg = plt.figure('v_x_avg',figsize=(12,3))
 plt.grid()
 plt.title('Gjennomsnittshastighet i x-retning')
+plt.ylabel('Hastighet ($\dfrac{m}{s}$)')
+plt.xlabel('tid ($s$)')
 plt.plot(x,v_x_avg)
 
 t = np.zeros(len(dt))
