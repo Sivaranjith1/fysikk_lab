@@ -4,6 +4,7 @@ from scipy.interpolate import CubicSpline
 from os import listdir
 from os.path import join
 
+ystart = 25e-2
 
 
 
@@ -16,10 +17,11 @@ def loadFromFile(filename):
     
     xmin = dataFromFile[0][1]
     tmin = dataFromFile[0][0]
+    ymin = dataFromFile[0][2]
     for data in dataFromFile:
         time.append(data[0] - tmin)
         xfast.append(data[1]- xmin)
-        yfast.append(data[2])
+        yfast.append(data[2] - ymin + ystart)
 
     time = np.array(time)
     xfast = np.array(xfast)
@@ -132,5 +134,11 @@ if __name__ == '__main__':
     error = standardError(deviation, len(speedArray) - 1)
     print('Standard error: ', error)
 
-    plt.plot(averageX)
+    bane_avg = plt.figure('bane average',figsize=(12,3))
+    plt.title('Gjennomsnittlig baneform fra målinger')
+    plt.plot(averageX[0:-6], averageY[0:-6], averageX[0:-6], averageY[0:-6], '*')
+    plt.xlabel('x_avg ($m$)', fontsize=20)
+    plt.ylabel('y_avg ($m$)', fontsize=20)
+    plt.grid()
+    bane_avg.savefig("img/bane_avg.png", bbox_inches='tight')
     plt.show()
