@@ -134,6 +134,8 @@ if __name__ == '__main__':
     error = standardError(deviation, len(speedArray) - 1)
     print('Standard error: ', error)
 
+    print('speed array', speedArray)
+
     bane_avg = plt.figure('bane average',figsize=(12,3))
     plt.title('Gjennomsnittlig baneform fra målinger')
     plt.plot(averageX[0:-6], averageY[0:-6], averageX[0:-6], averageY[0:-6], '*')
@@ -141,4 +143,16 @@ if __name__ == '__main__':
     plt.ylabel('y_avg ($m$)', fontsize=20)
     plt.grid()
     bane_avg.savefig("img/bane_avg.png", bbox_inches='tight')
+
+
+    speed_plot = plt.figure('speed_plot',figsize=(12,3))
+    plt.title('Slutthastigheten til målingene')
+    plt.plot(speedArray, '*', label="Slutthastighet")
+    plt.xlabel('Måling', fontsize=20)
+    plt.ylabel('Slutthastighet ($\dfrac{m}{s}$)', fontsize=20)
+    plt.hlines(averageSpeed, 0, len(speedArray), color='r',label='Gjennomsnitt', linestyles='dashed')
+    plt.legend(loc="lower right")
+
+    speed_plot.savefig("img/slutthastighet.png", bbox_inches='tight')
+
     plt.show()
