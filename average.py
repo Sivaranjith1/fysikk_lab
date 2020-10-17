@@ -145,13 +145,14 @@ if __name__ == '__main__':
     bane_avg.savefig("img/bane_avg.png", bbox_inches='tight')
 
 
+    speedIndex = [i+1 for i in range(0, len(speedArray))]
     speed_plot = plt.figure('speed_plot',figsize=(12,3))
     plt.title('Slutthastigheten til målingene')
-    plt.plot(speedArray, '*', label="Slutthastighet")
+    plt.plot(speedIndex, speedArray, '*', label="Slutthastighet")
     plt.xlabel('Måling', fontsize=20)
     plt.ylabel('Slutthastighet ($\dfrac{m}{s}$)', fontsize=20)
-    plt.hlines(averageSpeed, 0, len(speedArray), color='r',label='Gjennomsnitt', linestyles='dashed')
-    plt.legend(loc="lower right")
+    plt.hlines(averageSpeed, speedIndex[0], len(speedArray), color='r',label='Gjennomsnitt', linestyles='dashed')
+    plt.legend(loc="lower center")
 
     speed_plot.savefig("img/slutthastighet.png", bbox_inches='tight')
 
