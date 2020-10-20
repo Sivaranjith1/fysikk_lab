@@ -92,8 +92,8 @@ xmin = xfast[0]
 xmax = xfast[-1]
 dx = 0.001
 x = np.arange(xmin, xmax, dx)
-Nx = len(x)
 y = cs(x)
+Nx = len(x)
 dy = cs(x,1)
 d2y = cs(x,2)
 g = 9.81
@@ -215,6 +215,7 @@ t = np.zeros(len(dt))
 for i in range(1,len(dt)):
     t[i] = t[i-1]+dt[i]
 
+np.savetxt('time.txt', t)
 graf_x_t = plt.figure('x(t)',figsize=(12,3))
 plt.grid()
 plt.title('X-posisjon over tid')
