@@ -4,7 +4,7 @@ from scipy.interpolate import CubicSpline
 from os import listdir
 from os.path import join
 
-ystart = 25e-2
+ystart = 25.5e-2
 
 
 
@@ -102,7 +102,7 @@ def speedDeviation(averageSpeed, speedArray):
     for x in speedArray:
         devi += pow((x - averageSpeed), 2)
 
-    devi = devi / len(speedArray - 2)
+    devi = devi / (len(speedArray)-2)
 
     return np.sqrt(devi)
 
@@ -118,6 +118,16 @@ if __name__ == '__main__':
 
     averageY = getAverage(yfast)
     averageX = getAverage(xfast)
+
+    for i in range(len(xfast)):
+        mal = plt.figure('Maaling '+str(i+1), figsize=(12,3))
+        plt.title('Baneformen av måling '+ str(i+1))
+        plt.plot(xfast[i],yfast[i], xfast[i],yfast[i], '*')
+        plt.xlabel('x ($m$)', fontsize=20)
+        plt.ylabel('y ($m$)', fontsize=20)
+    
+        plt.grid()
+        mal.savefig("img/mal"+str(i+1)+".svg", bbox_inches='tight')
 
     velocity = speed(xfast, yfast, time)
     speedArray = velocity[:,2]
@@ -138,11 +148,11 @@ if __name__ == '__main__':
 
     bane_avg = plt.figure('bane average',figsize=(12,3))
     plt.title('Gjennomsnittlig baneform fra målinger')
-    plt.plot(averageX[0:-6], averageY[0:-6], averageX[0:-6], averageY[0:-6], '*')
+    plt.plot(averageX, averageY, averageX, averageY, '*')
     plt.xlabel('x_avg ($m$)', fontsize=20)
     plt.ylabel('y_avg ($m$)', fontsize=20)
     plt.grid()
-    bane_avg.savefig("img/bane_avg.png", bbox_inches='tight')
+    bane_avg.savefig("img/bane_avg.svg", bbox_inches='tight')
 
 
     speedIndex = [i+1 for i in range(0, len(speedArray))]
@@ -154,6 +164,6 @@ if __name__ == '__main__':
     plt.hlines(averageSpeed, speedIndex[0], len(speedArray), color='r',label='Gjennomsnitt', linestyles='dashed')
     plt.legend(loc="lower center")
 
-    speed_plot.savefig("img/slutthastighet.png", bbox_inches='tight')
+    speed_plot.savefig("img/slutthastighet.svg", bbox_inches='tight')
 
     plt.show()
