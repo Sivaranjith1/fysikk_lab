@@ -61,7 +61,7 @@ def loadEveryFile(path):
         xfast.append(x_temp)
         yfast.append(y_temp)
 
-    time = np.array(time, dtype=object)
+    time = 2*np.array(time, dtype=object)
     xfast = np.array(xfast, dtype=object)
     yfast = np.array(yfast, dtype=object)
 
