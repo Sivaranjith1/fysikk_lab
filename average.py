@@ -3,10 +3,22 @@ import numpy as np
 from scipy.interpolate import CubicSpline
 from os import listdir
 from os.path import join
+from scipy.interpolate import CubicSpline
 
 ystart = 25.5e-2
 
-
+def getNumericForm():
+    h = 200
+    xfast=np.asarray([0,h,2*h,3*h,4*h,5*h,6*h,7*h])
+    xfast = xfast/1000
+    yfast = np.asarray([0.255,0.183,0.189,0.188,0.129,0.091,0.151,0.171])
+    cs = CubicSpline(xfast, yfast, bc_type='natural')
+    xmin = xfast[0]
+    xmax = xfast[-1]
+    dx = 0.001
+    x = np.arange(xmin, xmax, dx)
+    y = cs(x)
+    return x,y
 
 def loadFromFile(filename):
     dataFromFile = np.loadtxt(filename, skiprows=2)
@@ -120,11 +132,17 @@ if __name__ == '__main__':
     averageX = getAverage(xfast)
 
     for i in range(len(xfast)):
+        xNumeric, yNumeric = getNumericForm()
+
         mal = plt.figure('Maaling '+str(i+1), figsize=(12,3))
         plt.title('Baneformen av måling '+ str(i+1))
-        plt.plot(xfast[i],yfast[i], xfast[i],yfast[i], '*')
+        plt.ylim(0,yNumeric[-1]*1.5)
+        plt.plot(xfast[i],yfast[i], label='Eksperimentell bane')
+        plt.plot( xfast[i],yfast[i], '*', label='Målepunkter')
+        plt.plot(xNumeric, yNumeric, 'r', linestyle='dashed', label='Numerisk bane')
         plt.xlabel('x ($m$)', fontsize=20)
         plt.ylabel('y ($m$)', fontsize=20)
+        plt.legend(loc="lower center")
     
         plt.grid()
         mal.savefig("img/mal"+str(i+1)+".svg", bbox_inches='tight')
@@ -145,6 +163,7 @@ if __name__ == '__main__':
     print('Standard error: ', error)
 
     print('speed array', speedArray)
+
 
     bane_avg = plt.figure('bane average',figsize=(12,3))
     plt.title('Gjennomsnittlig baneform fra målinger')
