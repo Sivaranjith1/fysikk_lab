@@ -20,6 +20,10 @@ def getNumericForm():
     y = cs(x)
     return x,y
 
+def getNumericTime():
+    t = np.loadtxt('time.txt')
+    return t
+
 def loadFromFile(filename):
     dataFromFile = np.loadtxt(filename, skiprows=2)
 
@@ -146,6 +150,19 @@ if __name__ == '__main__':
     
         plt.grid()
         mal.savefig("img/mal"+str(i+1)+".svg", bbox_inches='tight')
+
+    #x(t)
+    xNumeric, _ = getNumericForm()
+    tNumeric = getNumericTime()
+    graf_x_t = plt.figure('x(t)',figsize=(12,3))
+    plt.grid()
+    plt.title('X-posisjon over tid for måling ' + str(4+1))
+    plt.xlabel('Tid ($s$)')
+    plt.ylabel('X posisjon ($m$)')
+    plt.plot(time[4], xfast[4])
+    plt.plot(time[4], xfast[4], '*')
+    plt.plot(tNumeric,xNumeric)
+    graf_x_t.savefig("img/x_av_t_maaling_"+str(4+1)+".svg", bbox_inches='tight')
 
     velocity = speed(xfast, yfast, time)
     speedArray = velocity[:,2]

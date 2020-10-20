@@ -215,6 +215,7 @@ t = np.zeros(len(dt))
 for i in range(1,len(dt)):
     t[i] = t[i-1]+dt[i]
 
+np.savetxt('time.txt', t)
 graf_x_t = plt.figure('x(t)',figsize=(12,3))
 plt.grid()
 plt.title('X-posisjon over tid')
