@@ -168,13 +168,21 @@ if __name__ == '__main__':
     velocity = speed(xfast, yfast, time)
     speedArray = velocity[:,2]
 
+    speedWithout = np.delete(speedArray, 8)
+    speedWithout = np.delete(speedWithout, 0)
+    print(speedWithout)
+
     averageSpeed = np.average(speedArray)
+    averageSpeedWithout = np.average(speedWithout)
 
     print('Average speed:', averageSpeed)
 
     deviation = speedDeviation(averageSpeed, speedArray)
+    deviationWithout = speedDeviation(averageSpeedWithout, speedWithout)
 
     print('Standard deviation:', deviation)
+
+    print('Average without:', averageSpeedWithout, 'deviation', deviationWithout)
     
 
     error = standardError(deviation, len(speedArray) - 1)
@@ -199,6 +207,7 @@ if __name__ == '__main__':
     plt.xlabel('Måling', fontsize=20)
     plt.ylabel('Slutthastighet ($\dfrac{m}{s}$)', fontsize=20)
     plt.hlines(averageSpeed, speedIndex[0], len(speedArray), color='r',label='Gjennomsnitt', linestyles='dashed')
+    plt.hlines(averageSpeedWithout, speedIndex[0], len(speedArray), color='g', label='Gjennomsnitt uten avvikere', linestyles='dashed')
     plt.legend(loc="lower center")
 
     speed_plot.savefig("img/slutthastighet.svg", bbox_inches='tight')
